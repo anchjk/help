@@ -1,0 +1,33 @@
+plugins { id 'com.android.application' }
+
+android {
+    namespace 'vn.evnqt1.helpdesk'
+    compileSdk 36
+
+    defaultConfig {
+        applicationId 'vn.evnqt1.helpdesk'
+        minSdk 29
+        targetSdk 36
+        versionCode 6
+        versionName '1.4.0'
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+
+    buildTypes {
+        debug { applicationIdSuffix '.debug' }
+        release {
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    // Giảm thời gian build: lint đầy đủ chạy riêng bằng `gradle lint`, không chạy kèm assembleRelease.
+    lint { checkReleaseBuilds false }
+
+    packaging { resources { excludes += ['META-INF/LICENSE*', 'META-INF/NOTICE*'] } }
+}
